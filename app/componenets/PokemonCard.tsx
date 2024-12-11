@@ -98,14 +98,14 @@ const PokemonCard: FC<PokemonCardProps> = ({
 
         {/* ATTACK AND DEFENSE TEXT */}
         <div className="absolute bottom-2 left-2 right-2 flex justify-between px-4">
-          <span className="font-bold text-blue-600">
+          <span className="font-bold text-blue-500">
             <span className="text-xs">
               {/* {pokemonData.stats[1].stat.name.toUpperCase()} */}ATK{" "}
             </span>
             <span className="text-lg ">{pokemonData.stats[1].base_stat}</span>
           </span>
 
-          <span className="font-bold text-green-600">
+          <span className="font-bold text-green-500">
             <span className="text-xs">
               {/* {pokemonData.stats[2].stat.name.toUpperCase()} */}DEF{" "}
             </span>
