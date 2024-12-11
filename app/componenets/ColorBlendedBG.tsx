@@ -12,7 +12,7 @@ const ColorBlendedBG: FC<ColorBlendedBGProps> = ({
   typeColors,
   children,
 }) => {
-  const blendColors = (color1: string, color2: string, ratio = 0.8) => {
+  const blendColors = (color1: string, color2: string, ratio = 0.5) => {
     const hexToRgb = (hex: string) => {
       const bigint = parseInt(hex.slice(1), 16);
       return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
@@ -43,7 +43,7 @@ const ColorBlendedBG: FC<ColorBlendedBGProps> = ({
   return (
     <div
       style={{ backgroundColor: blendedColor }}
-      className="flex justify-center mt-11 border-8 border-yellow-300"
+      className="flex justify-center mt-5 border-4 rounded border-stone-300"
     >
       {children}
     </div>

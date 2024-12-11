@@ -1,5 +1,4 @@
 // Card.tsx
-
 "use client";
 
 import { useState } from "react";
@@ -32,16 +31,44 @@ interface PokemonSprites {
   };
 }
 
+interface PokemonAbility {
+  ability: {
+    name: string;
+    url: string;
+  };
+}
+
 interface PokemonData {
   name: string;
   sprites: PokemonSprites;
   types: PokemonType[];
   stats: PokemonStat[];
+  abilities: PokemonAbility[];
 }
 
 const Card = () => {
   const [pokemonName, setPokemonName] = useState<string>("");
   const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
+  const [abilityText, setAbilityText] = useState<string>("");
+
+  const fetchAbility = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Ability verisi alınırken bir hata oluştu.");
+      }
+      const data = await response.json();
+
+      const englishEffect = data.effect_entries.find(
+        (entry: any) => entry.language.name === "en"
+      )?.effect;
+
+      setAbilityText(englishEffect || "No ability details available.");
+    } catch (error) {
+      console.error("Hata:", error);
+      setAbilityText("Ability details could not be loaded.");
+    }
+  };
 
   const fetchData = async () => {
     if (!pokemonName) return; // Eğer pokemon adı boşsa işlem yapma
@@ -59,7 +86,14 @@ const Card = () => {
 
       console.log(pokemonData);
 
+      localStorage.setItem("pokemonData", JSON.stringify(pokemonData));
+
       setPokemonData(data); // State'e kaydet
+
+      // İlk ability URL'sini fetch et
+      if (data.abilities.length > 0) {
+        fetchAbility(data.abilities[0].ability.url);
+      }
     } catch (error) {
       console.error("Hata:", error);
     }
@@ -81,13 +115,19 @@ const Card = () => {
         handleKeyDown={handleKeyDown}
       />
 
-      <div className="seperator mt-11"></div>
+      <div className="seperator mt-6"></div>
 
-      {/* Pokémon verisi geldiyse ve sprite varsa göster */}
-      {pokemonData &&
-        pokemonData.sprites.other["official-artwork"].front_default && (
-          <PokemonCard pokemonData={pokemonData} typeColors={typeColors} />
-        )}
+      <div className="">
+        {/* Pokémon verisi geldiyse ve sprite varsa göster */}
+        {pokemonData &&
+          pokemonData.sprites.other["official-artwork"].front_default && (
+            <PokemonCard
+              pokemonData={pokemonData}
+              typeColors={typeColors}
+              abilityText={abilityText} // Ability text prop olarak geçiliyor
+            />
+          )}
+      </div>
     </div>
   );
 };
