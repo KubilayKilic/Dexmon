@@ -1,4 +1,3 @@
-// Card.tsx
 "use client";
 
 import { useState } from "react";
@@ -46,6 +45,13 @@ interface PokemonData {
   abilities: PokemonAbility[];
 }
 
+interface AbilityEffectEntry {
+  effect: string;
+  language: {
+    name: string;
+  };
+}
+
 const Card = () => {
   const [pokemonName, setPokemonName] = useState<string>("");
   const [pokemonData, setPokemonData] = useState<PokemonData | null>(null);
@@ -57,10 +63,11 @@ const Card = () => {
       if (!response.ok) {
         throw new Error("Ability verisi alınırken bir hata oluştu.");
       }
-      const data = await response.json();
+      const data: { effect_entries: AbilityEffectEntry[] } =
+        await response.json();
 
       const englishEffect = data.effect_entries.find(
-        (entry: any) => entry.language.name === "en"
+        (entry) => entry.language.name === "en"
       )?.effect;
 
       setAbilityText(englishEffect || "No ability details available.");
