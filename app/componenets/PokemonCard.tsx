@@ -124,7 +124,7 @@ const PokemonCard: FC<PokemonCardProps> = ({
           </span>
 
           {/* ABILITY TEXT */}
-          <div className="absolute mt-2 left-5 right-3 text-xs text-black font-serif max-h-40 overflow-y-auto scrollbar-thin">
+          <div className="absolute mt-2 left-5 right-3 text-xs text-black font-sans font-semibold max-h-40 overflow-y-auto scrollbar-thin">
             {abilityText}
           </div>
         </div>
