@@ -73,7 +73,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For questions or feedback, feel free to reach out:
-- **GitHub**: [KubilayKilic]https://github.com/KubilayKilic
+- **GitHub**: [KubilayKilic](https://github.com/KubilayKilic)
 - **Email**: kilickubilaykaan@gmail.com
 
 ## Pokemon Types Chart
