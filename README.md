@@ -79,3 +79,6 @@ For questions or feedback, feel free to reach out:
 ## Pokemon Types Chart
 During the testing and development of this application, I utilized a detailed Pokemon Types Chart to better understand the relationships and interactions between different Pokemon types. You can explore this chart for reference or further study [here](https://github.com/KubilayKilic/Pokemon-Types-Chart)
 It's just a fun little project to understand Next.js and fetch process a bit more.
+
+
+This project is made for educational purposes only, to learn Next.js.
